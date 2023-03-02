@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Welcome\WelcomeController;
+use App\Http\Controllers\Main\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +14,8 @@ use App\Http\Controllers\Welcome\WelcomeController;
 |
 */
 
-
+Route::get('/', [MainController::class, 'index']);
+Route::get('/تسجيل-الدخول', [MainController::class, 'login']);
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
