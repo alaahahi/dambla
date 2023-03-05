@@ -15,12 +15,12 @@ body {
   height: 100%;
   overflow: hidden;
 }
-.container:hover .top:before, .container:hover .top:after, .container:hover .bottom:before, .container:hover .bottom:after, .container:active .top:before, .container:active .top:after, .container:active .bottom:before, .container:active .bottom:after {
+.container  .top:before, .container  .top:after, .container  .bottom:before, .container  .bottom:after, .container:active .top:before, .container:active .top:after, .container:active .bottom:before, .container:active .bottom:after {
   margin-left: 200px;
   transform-origin: -200px 50%;
   transition-delay: 0s;
 }
-.container:hover .center, .container:active .center {
+.container  .center, .container:active .center {
   opacity: 1;
   transition-delay: 0.2s;
 }
@@ -76,6 +76,7 @@ body {
   transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
   transition-delay: 0s;
   color: #333;
+  direction: rtl;
 }
 .center input {
   width: 100%;
@@ -85,27 +86,21 @@ body {
   border: 1px solid #ccc;
   font-family: inherit;
 }
-.banner_main  > a {
-    width: 241px;
-margin-top: 20px;
-    padding: 13px 0px;
+.banner_main {
+    margin-top: 20px;
     font-size: 17px;
-    display: inline-block;
+    width: 100%;
+    height: 40px;
+    border:none;
     text-align: center;
-   text-decoration: none;
-   font-size: 20px;
+    text-decoration: none;
+    font-size: 18px;
     text-transform: uppercase;
     font-weight: 500;
     transition: all .4s ease-in;
     background-image: linear-gradient(to bottom, #bc883d, #f5e47b, #bc883d);
     color: #fff;
     transition: all .4s ease-in;
-    border-radius: 20px !important;
+    border-radius: 10px !important;
 }
 
-.banner_main > a:hover {
-    background-image: linear-gradient(to bottom, #bc883d, #f5e47b, #bc883d);
-    color: #000;
-    transition: all .4s ease-in;
-    border-radius: 20px;
-}

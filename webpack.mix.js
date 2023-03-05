@@ -11,7 +11,20 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+ mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules\/(?!(alpinejs)\/).*/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [['@babel/preset-env', { targets: "defaults" }]],
+                        cacheDirectory: true
+                    }
+                }
+            }
+        ]
+    }
+});

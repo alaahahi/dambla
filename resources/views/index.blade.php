@@ -80,7 +80,7 @@
                               <div class="right_header_info">
                                  <ul>
                                     <li class="menu_iconb">
-                                       <a href="/تسجيل-الدخول">تسجيل الدخول</a>
+                                       <a href="/login">تسجيل الدخول</a>
                                     </li>
                                     <li>
                                        <button type="button" id="sidebarCollapse">
@@ -104,7 +104,7 @@
                      <div class="row">
                         <div class="col-md-12">
                            <div class="text-bg">
-                              <a href="/تسجيل-الدخول">تسجيل الدخول الأن</a>
+                              <a href="/login">تسجيل الدخول الأن</a>
                            </div>
                         </div>
                      </div>
