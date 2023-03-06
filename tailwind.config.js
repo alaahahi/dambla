@@ -15,6 +15,16 @@ module.exports = {
             },
         },
     },
+    darkSelector: '.dark-mode',
+    variants: {
+        extend: {
+          // ...
+          margin: ['responsive', 'direction'],
+          padding: ['responsive', 'direction'],
+          textAlign: ['responsive', 'direction'],
+        },
+        direction: ['rtl'],
+      },
 
     plugins: [require('@tailwindcss/forms')],
 };
