@@ -1,5 +1,10 @@
 
     <!-- Session Status -->
+    <div class="header">
+        <div class="logo" style="padding: 15px;position: fixed;z-index: 24;">
+            <a href="index.html"><img width="150px" src="images/logo.png" alt="#"></a>
+        </div>
+    </div>
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <link rel="stylesheet" href="./style.css">
 	<div class="container" onclick="onclick">
@@ -12,8 +17,10 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('اسم المستخدم')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            @if($errors->get('email'))
+            <div style="text-align: center;color: red;">اسم المستخدم غير صالح </div>
+            @endif
         </div>
 
         <!-- Password -->
@@ -25,7 +32,9 @@
                             name="password"
                             required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            @if($errors->get('password'))
+            <span style="text-align: center;color: red;">كلمة المرور  غير صالح </span>
+            @endif
         </div>
 
         <!-- Remember Me

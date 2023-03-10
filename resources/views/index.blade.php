@@ -71,7 +71,7 @@
                               <div class="full">
                                  <div class="center-desk">
                                     <div class="logo">
-                                       <a href="index.html"><img width="200px" src="images/logo.png" alt="#"></a>
+                                       <a href="index.html"><img width="150px" src="images/logo.png" alt="#"></a>
                                     </div>
                                  </div>
                               </div>
