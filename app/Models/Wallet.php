@@ -22,4 +22,8 @@ class Wallet extends Model
     {
         return $this->hasMany(Transaction::class);
     }
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
 }

@@ -124,4 +124,11 @@ class User extends \TCG\Voyager\Models\User implements JWTSubject
     {
         return $this->hasOne(Wallet::class);
     }
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($user) {
+         $user->wallet()->create(['balance' => 0]) ;
+        });
+    }
 }

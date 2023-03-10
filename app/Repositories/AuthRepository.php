@@ -95,7 +95,7 @@ class AuthRepository
         } catch (\Throwable $th) {
             //throw $th;
         }
-        Twilio::message('+'.$user->phone, $user->code);
+        //Twilio::message('+'.$user->phone, $user->code);
         return $user;
       
      
