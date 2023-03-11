@@ -11,5 +11,8 @@ class Session extends Model
     use HasFactory;
     use Translatable;
     protected $table = 'sessions'; 
-    
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 }
