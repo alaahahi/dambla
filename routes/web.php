@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\MainController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\BingoGame;
+
+Route::get('/bingo-game', BingoGame::class);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,10 @@ use App\Http\Controllers\ProfileController;
 Route::get('/dashboard', [MainController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    
+    Route::get('/game/{id}', [MainController::class, 'game'])->name('game.show');
+    Route::post('process-form', [MainController::class, 'handleForm'])->name('process-form');
+   
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -14,6 +14,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Main\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -156,6 +157,9 @@ Route::group([
 
     Route::get('dashboardAllInOneRequest', [DashboardController::class, 'dashboardAllInOneRequest']);
 
+    Route::post('createBoard',  [MainController::class, 'createBoard']);
+
+    
     
 
 });
