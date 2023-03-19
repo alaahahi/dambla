@@ -142,6 +142,8 @@
                                 </div>
                                 <form action="{{ route('process-form') }}" method="POST">
                                 @csrf
+                                <input name="game_id" value="{{$session->game->id}}" class="hidden">
+ 
                                 <select id="select2" name="select2[]" class="hidden" multiple>
                                 @foreach ($boards as $board)
                                 @if($board->is_pay==0)

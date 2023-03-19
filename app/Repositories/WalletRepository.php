@@ -173,7 +173,7 @@ class WalletRepository implements CrudInterface
 
     public function decreaseWallet(int $amount,$desc) 
     {
-        $user=  User::with('wallet')->find($this->user->id) ;
+        $user=  User::with('wallet')->find(auth()->user()->id) ;
       
         if($id = $user->wallet->id){
         $transactionDetils = ['type' => 'out','wallet_id'=>$id,'description'=>$desc,'amount'=>$amount];

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
 use App\Models\User;
 use App\Models\Board;
+use App\Models\Game;
 
 use App\Models\Session;
 use App\Traits\ResponseTrait;
@@ -70,12 +71,9 @@ class MainController extends Controller
 
     public function game($gameId,Request $request)
     {
-        $userId = 65;
-        $gameId = 1;
     $session = Session::with('game')->where('id',$gameId)->first();
     $user =  User::where('id',auth()->user()->id)->with('wallet')->first();
-    $boards = Board::where('user_id', $userId)
-    ->where('game_id', $gameId)
+    $boards = Board::where('game_id', $gameId)
     ->get();
 
     return view('game.boards', compact('boards','user','session'));
@@ -84,10 +82,11 @@ class MainController extends Controller
     public function handleForm(Request $request)
     {
         $selectedItems = $request->input('select2');
+        $game = Game::where('id',$request->game_id)->first();
 
-        // $totalPrice =  (int)$event->entry_fee *(int)$data['ticket_number']  ; 
-        // $this->walletRepository->decreaseWallet($totalPrice,'Book a party ticket for '.$event->name);
-        // $event->decrement('ticket',$data['ticket_number']); 
+        $price =  $game->group_price ?? 0;
+        $totalPrice =  (int) $price  *count( $selectedItems ) ; 
+        $this->walletRepository->decreaseWallet($totalPrice,'Book '.count( $selectedItems ).' ticket for '.$game->name);
 
         Board::whereIn('id', $selectedItems)->update(['user_id' => auth()->user()->id,'is_pay'=> 1 ,'pay_time'=>Carbon::now()]);
         // Do something with the selected items...
