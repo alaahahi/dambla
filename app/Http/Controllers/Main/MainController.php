@@ -44,7 +44,7 @@ class MainController extends Controller
     {
         
         $userId = $request->user_id;
-        $gameId = $request->game_id;
+        $sessionsId = $request->sessions_id;
 
         $lastCardNumber = Board::max('card_number');
         $nextCardNumber = $lastCardNumber + 1;
@@ -56,7 +56,7 @@ class MainController extends Controller
         
         $board = Board::create([
             'user_id' => $userId,
-            'game_id' => $gameId,
+            'sessions_id' => $sessionsId,
             'card_number' =>  $i,
             'board_data' => json_encode($boardData),
         ]);
@@ -73,19 +73,27 @@ class MainController extends Controller
     {
     $session = Session::with('game')->where('id',$gameId)->first();
     $user =  User::where('id',auth()->user()->id)->with('wallet')->first();
-    $boards = Board::where('game_id', $gameId)->get();
+    $boards = Board::where('sessions_id', $gameId)->get();
 
     return view('game.boards', compact('boards','user','session'));
     }
+    public function session($sessionId,Request $request)
+    {
+    $session = Session::find($sessionId);
+    $user =  User::where('id',auth()->user()->id)->with('wallet')->first();
+    $boards = Board::where('sessions_id',$sessionId)->get();
 
+    return view('game.boards', compact('boards','user','session'));
+    }
     public function handleForm(Request $request)
     {
         $selectedItems = $request->input('select2');
         $game = Game::where('id',$request->game_id)->first();
+        $session = Session::where('id',$request->session_id)->first();
         $price =  $game->group_price ?? 0;
         $totalPrice =  (int) $price  *count( $selectedItems ); 
         $this->walletRepository->decreaseWallet($totalPrice,'Book '.count( $selectedItems ).' ticket for '.$game->name);
-        Board::whereIn('id', $selectedItems)->update(['user_id' => auth()->user()->id,'is_pay'=> 1 ,'pay_time'=>Carbon::now()]);
+        Board::whereIn('card_number', $selectedItems)->where('sessions_id',$session->id)->update(['user_pay' => auth()->user()->id,'is_pay'=> 1 ,'pay_time'=>Carbon::now()]);
         return redirect('/dashboard')->with('success', 'Form submitted successfully!');
     }
 }

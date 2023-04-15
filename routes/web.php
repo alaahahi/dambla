@@ -25,6 +25,9 @@ Route::get('/dashboard', [MainController::class, 'dashboard'])->middleware(['aut
 Route::middleware('auth')->group(function () {
     
     Route::get('/game/{id}', [MainController::class, 'game'])->name('game.show');
+    Route::get('/session/{id}', [MainController::class, 'session'])->name('session.show');
+
+    
     Route::post('process-form', [MainController::class, 'handleForm'])->name('process-form');
    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

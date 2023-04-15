@@ -12,4 +12,8 @@ class Game extends Model
     use Translatable;
     protected $table = 'game'; 
     protected $translatable = ['group_price', 'accumulated'];
+    public function type(): object
+    {
+        return $this->belongsTo(GameType::class)->select('id', 'name');
+    }
 }

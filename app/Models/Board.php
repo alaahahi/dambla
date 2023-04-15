@@ -8,7 +8,7 @@ class Board extends Model
 {
     use HasFactory;
     protected $table = 'boards';
-    protected $fillable = ['user_id', 'game_id', 'board_data','card_number','is_pay'];
+    protected $fillable = ['user_id', 'game_id', 'board_data','card_number','is_pay','sessions_id','user_pay'];
 
     public function game()
     {
