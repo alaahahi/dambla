@@ -73,8 +73,7 @@ class MainController extends Controller
     {
     $session = Session::with('game')->where('id',$gameId)->first();
     $user =  User::where('id',auth()->user()->id)->with('wallet')->first();
-    $boards = Board::where('game_id', $gameId)
-    ->get();
+    $boards = Board::where('game_id', $gameId)->get();
 
     return view('game.boards', compact('boards','user','session'));
     }
@@ -83,14 +82,10 @@ class MainController extends Controller
     {
         $selectedItems = $request->input('select2');
         $game = Game::where('id',$request->game_id)->first();
-
         $price =  $game->group_price ?? 0;
-        $totalPrice =  (int) $price  *count( $selectedItems ) ; 
+        $totalPrice =  (int) $price  *count( $selectedItems ); 
         $this->walletRepository->decreaseWallet($totalPrice,'Book '.count( $selectedItems ).' ticket for '.$game->name);
-
         Board::whereIn('id', $selectedItems)->update(['user_id' => auth()->user()->id,'is_pay'=> 1 ,'pay_time'=>Carbon::now()]);
-        // Do something with the selected items...
-        
         return redirect('/dashboard')->with('success', 'Form submitted successfully!');
     }
 }
