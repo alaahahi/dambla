@@ -82,8 +82,9 @@ class MainController extends Controller
     $session = Session::find($sessionId);
     $user =  User::where('id',auth()->user()->id)->with('wallet')->first();
     $boards = Board::where('sessions_id',$sessionId)->get();
+    $myCards= Board::where('sessions_id',$sessionId)->where('user_pay', auth()->user()->id)->get();
 
-    return view('game.boards', compact('boards','user','session'));
+    return view('game.boards', compact('boards','user','session','myCards'));
     }
     public function handleForm(Request $request)
     {

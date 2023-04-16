@@ -39,9 +39,58 @@
             </div>
         </div>
     </div>
+    @if($myCards??0)
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-5">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                <h3 class="mb-4 text-2xl font-extrabold text-gray-900 text-center dark:text-white md:text-3xl lg:text-2xl text-center"><span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 ">بطاقاتي</span></h3>
+                    <div  class="grid grid-cols-4 gap-4">
+                    @foreach ($myCards as $cards)                    
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-center">
+                        {{ str_pad($cards->card_number, 3, '0', STR_PAD_LEFT) }}    
+                        <table class="w-full text-sm text-left text-blue-100 dark:text-blue-100">
+                  
+                            <tbody>
 
+                                 <tr class="bg-blue-500 border-b border-blue-400">
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_1_col_1}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_1_col_2}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_1_col_3}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_1_col_4}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_1_col_5}}</th>
+                                 </tr>
+                                 <tr class="bg-blue-500 border-b border-blue-400">
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_2_col_1}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_2_col_2}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_2_col_3}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_2_col_4}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_2_col_5}}</th>
+                                 </tr>
+                                 <tr class="bg-blue-500 border-b border-blue-400">
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_3_col_1}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_3_col_2}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_3_col_3}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_3_col_4}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_3_col_5}}</th>
+                                 </tr>
+                                 <tr class="bg-blue-500 border-b border-blue-400">
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_4_col_1}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_4_col_2}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_4_col_3}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_4_col_4}}</th>
+                                    <th  class="px-1 py-1 font-medium text-blue-50 text-center dark:text-blue-100">{{json_decode($cards->board_data)->row_4_col_5}}</th>
+                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-
+    
+                @endforeach
+                    </div>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
